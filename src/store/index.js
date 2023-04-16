@@ -4,10 +4,17 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-state: {
-sum: 0,
-lastTeam: '',
-},
-mutations: {
-}
-})
+  state: {
+    sum: 0,
+    lastTeam: 'a',
+  },
+  mutations: {
+    incrementCounter(state) {
+      state.sum++
+    },
+    updateSelectedTeamName(state, teamName) {
+      state.lastTeam = teamName
+    }
+    }
+  }
+)

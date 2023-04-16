@@ -1,16 +1,14 @@
 <template>
   <div class="about">
-    <dir>current team: {{ }}</dir>
-    <button>{{ clickCount }}</button>
-    <div>{{ }}</div>
-    <div>Last team name clicked: {{}}</div>
-    <button>戻る</button>
+    <h2>current team: {{ teamName }}</h2>
+    <button v-on:click="clickCounter">counter</button>
+    <p>{{ $store.state.sum }}</p>
+    <p>Last team name clicked: {{ $store.state.lastTeam }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['itemId'],
   data() {
     return {
       teams: [
@@ -29,6 +27,19 @@ export default {
       ],
     };
   },
-
+  computed: {
+    teamName() {
+      const teamId = this.$route.query.teamId;
+      const team = this.teams.find(function (teams) {
+        return teams.id === teamId;
+      });
+      return team ? team.name : "not found";
+    },
+  },
+  methods: {
+    clickCounter() {
+      this.$store.commit("incrementCounter");
+    },
+  },
 };
 </script>
