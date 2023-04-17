@@ -1,9 +1,12 @@
 <template>
   <div class="about">
     <h2>current team: {{ teamName }}</h2>
+    <div class="click">
     <button v-on:click="clickCounter">counter</button>
+    </div>
     <p>{{ $store.state.sum }}</p>
     <p>Last team name clicked: {{ $store.state.lastTeam }}</p>
+    <router-link to="/">戻る</router-link>
   </div>
 </template>
 
@@ -39,6 +42,7 @@ export default {
   methods: {
     clickCounter() {
       this.$store.commit("incrementCounter");
+      this.$store.commit("updateSelectedTeamName", this.teamName);
     },
   },
 };

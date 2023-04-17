@@ -2,7 +2,7 @@
   <div class="home">
     <h2>チーム一覧</h2>
     <div v-for="team in teams" :key="team.id">
-      <router-link v-bind:to="{ name: 'about', query: { teamId: team.id } }" v-on:click="selectTeam(team.name)">
+      <router-link v-bind:to="{ name: 'about', query: { teamId: team.id } }">
         {{ team.name }}
       </router-link>
     </div>
@@ -30,11 +30,6 @@ export default {
       ],
     };
   },
-  methods: {
-    selectTeam(teamName){
-      this.$store.commit('updateSelectedTeamName', teamName)
-    }
-  }
 };
 </script>
 
